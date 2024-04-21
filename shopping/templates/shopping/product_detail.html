@@ -1,0 +1,12 @@
+{% extends 'shopping/base.html' %}
+{% block content %}
+    <h1>Computer Shopping: Product Details</h1>
+    
+    <p>Product {{ product.id }}: <a href="{% url 'shopping:product_edit' id=product.id %}">Edit</a>
+      This is product {{ product.name }} , which costs
+      {{product.price}}. Sold from <a href="{% url 'shopping:latLng' id=product.id %}">{{ country.country_name }}</a>. The product was added on: {{ product.created_date }} 
+   </p>
+
+    <p><a href="{% url 'shopping:product_delete' id=product.id %}">Delete the product</a></p>
+    {% endblock %}
+    

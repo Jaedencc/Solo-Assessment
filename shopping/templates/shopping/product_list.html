@@ -1,17 +1,17 @@
-<html>
-<head>
-    <title>Shopping</title>
-</head>
-<body>
-    <h1>Product List</h1>
-    <p>{{ deleted }}</p>
-    <p>Add a new product</p>
-    {% for product in products %}
-    <p><b>{{ product.name }}</b>
-      This is product <a href="{% url 'shopping:latLng' id=product.id %}">{{ product.id }}</a> which costs
-        {{ product.price }}. The product was added on: {{ product.created_date }} |
-        {{ product.id }}
-    </p>
-    {% endfor %}
-</body>
-</html>
+{% extends 'shopping/base.html' %}
+{% block content %}
+
+<h1>Product List</h1>
+<form method="get" action="">
+    <input type="text" name="brand" placeholder="Searching by brand name" value="{{ request.GET.brand }}">
+    <button type="submit">Search</button>
+</form>
+<p><a href="{% url 'shopping:product_new' %}">Add a new product</a></p>
+{% for product in products %}
+<p>
+    <b><a href="{% url 'shopping:product_detail' id=product.id %}">{{ product.name }}</a></b>
+    This is product {{ product.id }} which costs {{ product.price }}. <b>Brand is {{ product.brand }}</b>. The product was added on: {{ product.created_date }} | {{ product.id }}
+</p>
+{% endfor %}
+
+{% endblock %}
