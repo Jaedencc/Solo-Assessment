@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Coordinates</title>
+</head>
+<body>
+    <h1>Product: {{ product.name }}</h1>
+    <p>Price: {{ product.price }}</p>
+    <h2>Associated Countries and Coordinates:</h2>
+    <ul>
+        {% for country in countries %}
+        <li>{{ country.country_name }}: Latitude {{ country.latitude }}, Longitude {{ country.longitude }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

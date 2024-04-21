@@ -1,0 +1,17 @@
+<html>
+<head>
+    <title>Shopping</title>
+</head>
+<body>
+    <h1>Product List</h1>
+    <p>{{ deleted }}</p>
+    <p>Add a new product</p>
+    {% for product in products %}
+    <p><b>{{ product.name }}</b>
+      This is product <a href="{% url 'shopping:latLng' id=product.id %}">{{ product.id }}</a> which costs
+        {{ product.price }}. The product was added on: {{ product.created_date }} |
+        {{ product.id }}
+    </p>
+    {% endfor %}
+</body>
+</html>
