@@ -52,6 +52,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# Redirect you to home page when you log out or log in
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/' 
+
 ROOT_URLCONF = 'mysite.urls'
 
 TEMPLATES = [
