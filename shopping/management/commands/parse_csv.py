@@ -74,10 +74,10 @@ class Command(BaseCommand):
                 print("longitude and latitude data parsed successfully")
             except FileNotFoundError:
                 print("lat_lng.csv file not found.")
-                return  # suspend the process if file is not found.
+                return  
             except Exception as error:
                 print(f"An error occurred while parsing lat_lng.csv: {error}")
-                return  # suspend the process if any other error occurs.
+                return
 
         except IntegrityError as error:
             print(f"Integrity of database error: {error}")

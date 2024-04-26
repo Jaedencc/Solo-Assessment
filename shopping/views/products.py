@@ -17,13 +17,13 @@ def product_list(request):
     else:
         products = Product.objects.all()          # if there is no that brand, present all product
     return render(request, 'shopping/product_list.html', {'products': products})
-#############
+
 
 def product_new(request):
     if request.method=="POST":
         form = ProductForm(request.POST)
         if form.is_valid():
-            product = form.save(commit=False)     # dont save, as want to add
+            product = form.save(commit=False)    
             product.created_date = timezone.now()
             product.save()
             return redirect('shopping:product_list')
@@ -31,7 +31,6 @@ def product_new(request):
         form = ProductForm()
     return render(request, 'shopping/product_edit.html', {'form': form})
 
-############
 
 def product_edit(request, id):
     product = get_object_or_404(Product, id=id)
@@ -46,7 +45,6 @@ def product_edit(request, id):
         form = ProductForm(instance=product)
     return render(request, 'shopping/product_edit.html', {'form': form})
 
-###########
 
 def product_delete(request, id):
     product = get_object_or_404(Product, id=id)
@@ -55,20 +53,18 @@ def product_delete(request, id):
     product.delete()
     return redirect('shopping:product_list' )
 
-###########
 
 def product_detail(request, id):
     product = get_object_or_404(Product, id=id)
     return render(request, 'shopping/product_detail.html', {'product' : product})
 
-###########
 
 def brand_chart(request):
     data = Product.objects.values('brand').annotate(count=Count('id')).order_by('-count')
     brands = [item['brand'] for item in data]
     counts = [item['count'] for item in data]
 
-    figure = px.bar(x=brands, y=counts, labels={'x': 'Brand', 'y': 'Number of Products'}, title='Number of Products by Brand')
-    barChart_html = pio.to_html(figure, full_html=False)
+    figure = px.bar(x=brands, y=counts, labels={'x': 'Brand', 'y': 'Number of Products'}, title='Number of Products by Brand')    # Generate a bar chart using Plotly（inspired by the example of https://plotly.com/python/bar-charts/）
+    barChart_html = pio.to_html(figure, full_html=False)                                                                          # Convert the Plotly figure to HTML
 
     return render(request, 'shopping/brand_chart.html', {'barChart_html': barChart_html})

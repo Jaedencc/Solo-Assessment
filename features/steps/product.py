@@ -6,12 +6,12 @@ from selenium.webdriver.common.by import By
 @given("we want to add a product")
 def user_on_product_newpage(context):
     base_url = urllib.request.url2pathname(context.test_case.live_server_url)
-    open_url = urljoin(base_url, '/product_new/')  # 确认这个URL是正确的
+    open_url = urljoin(base_url, '/product_new/')  
     context.browser.get(open_url)
 
 @when("we fill in the form")
 def user_fills_in_the_form(context):
-    print(context.browser.page_source)  # 辅助调试
+    print(context.browser.page_source)  
     name_textfield = context.browser.find_element(By.NAME, 'name')
     name_textfield.send_keys('thing one')
     price_textfield = context.browser.find_element(By.NAME, 'price')
@@ -25,7 +25,7 @@ def product_added(context):
 @given(u'we have specific products to add')
 def specific_products(context):
     base_url = urllib.request.url2pathname(context.test_case.live_server_url)
-    open_url = urljoin(base_url, '/product_new/')  # 确认这个URL是正确的
+    open_url = urljoin(base_url, '/product_new/') 
     for row in context.table:
         context.browser.get(open_url)
         name_textfield = context.browser.find_element(By.NAME, 'name')
@@ -38,10 +38,10 @@ def specific_products(context):
 @when(u'we visit the listing page')
 def step_impl(context):
     base_url = urllib.request.url2pathname(context.test_case.live_server_url)
-    open_url = urljoin(base_url, '/')  # 根据路由设置，访问根目录
+    open_url = urljoin(base_url, '/')  
     context.browser.get(open_url)
     assert 'This is product' in context.browser.page_source, "Expected product listing not found."
 
-@then(u'we will find \'another thing\'')
+@then(u'we will find \'nice computer\'')
 def step_impl(context):
-    assert 'another thing' in context.browser.page_source, "Product 'another thing' not found on the page."
+    assert 'nice computer' in context.browser.page_source, "Product 'nice computer' not found on the page."

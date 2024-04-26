@@ -13,7 +13,7 @@
      
     {% endif %}
   {% endif %}
-  <p>Please login, or <a href = "{% url 'shopping:signup' %}">Register</a> to see this page.</p>
+  <p>Please login, or <a href = "{% url 'shopping:signup' %}">Register</a></p>
   <p>Log in to your superuser account to edit products (add new products, delete products, edit product information).</p>
     <form method="POST" action="{% url 'shopping:login' %}"> 
     {% csrf_token %}

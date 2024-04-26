@@ -6,20 +6,30 @@ from shopping.forms import SignUpForm
 from shopping.views.basket import Basket
 
 def signup(request):
-    form = SignUpForm(request.POST)
-    if form.is_valid():
-        user = form.save()
-        user.refresh_from_db()
-        user.customer.first_name = form.cleaned_data.get('first_name')
-        user.customer.last_name = form.cleaned_data.get('last_name')
-        user.customer.address = form.cleaned_data.get('address')
-        user.save()
-        username = form.cleaned_data.get('username')
-        password = form.cleaned_data.get('password1')
-        user = authenticate(username=username, password= password)
-        login(request, user)
-        return redirect('/')
-    return render(request, 'signup.html', {'form': form})
+    try:
+        if request.method == 'POST':
+            form = SignUpForm(request.POST)
+            if form.is_valid():
+                user = form.save()
+                user.refresh_from_db()
+                user.customer.first_name = form.cleaned_data.get('first_name')
+                user.customer.last_name = form.cleaned_data.get('last_name')
+                user.customer.address = form.cleaned_data.get('address')
+                user.save()
+                
+                username = form.cleaned_data.get('username')
+                password = form.cleaned_data.get('password1')
+                user = authenticate(username=username, password=password)
+                login(request, user)
+                
+                return redirect('/')
+        else:
+            form = SignUpForm()
+        return render(request, 'signup.html', {'form': form})
+    except form.ValidationError:
+        return render(request, 'error.html')
+    except Exception as error:
+        return render(request, 'error.html')
 
 def Pay(request):
     basket = Basket(request)
@@ -37,12 +47,14 @@ def Pay(request):
 
 def purchase(request):
     if request.user.is_authenticated:
-       user = request.user
-       basket = Basket(request)
-       
-       return render(request, 'shopping/purchase.html', {'basket': basket, 'user': user})
+        user = request.user
+        basket = Basket(request)
+        return render(request, 'shopping/purchase.html', {'basket': basket, 'user': user})
     else:
         return redirect('shopping:login')
 
 def Paysuccessful(request):
     return render(request, 'shopping/pay_successful.html')
+
+def page_not_found(request):
+    return render(request, 'error.html')

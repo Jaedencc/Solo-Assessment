@@ -30,4 +30,5 @@ urlpatterns = [
 
         path('Pay_successful/', views.userFunctions.Paysuccessful, name='Paysuccessful'),
 
+        path('error/', views.userFunctions.page_not_found, name='error'),
         ]

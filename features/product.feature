@@ -8,7 +8,7 @@ Scenario: add a product
 Scenario: adding products
     Given we have specific products to add
     | name          | price  |
-    | this one      | 23.45  |
-    | another thing | 34.56  |
+    | new computer  | 2000   | 
+    | nice computer | 3333  |
     When we visit the listing page
-    Then we will find 'another thing'
+    Then we will find 'nice computer'
