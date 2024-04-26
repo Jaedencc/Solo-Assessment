@@ -1,0 +1,3 @@
+186a1e1	ZHISEN ZHANG	Wed Apr 24 00:11:38 2024	add multiple features about basket signup and register
+5a375ad	ZHISEN ZHANG	Sun Apr 21 21:17:22 2024	add functions of edit, add new, delete and search, and updata details of product
+641b4d9	ZHISEN ZHANG	Sun Apr 21 16:10:26 2024	done basic model view and templates

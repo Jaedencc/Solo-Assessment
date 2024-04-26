@@ -14,6 +14,7 @@
     {% endif %}
   {% endif %}
   <p>Please login, or <a href = "{% url 'shopping:signup' %}">Register</a> to see this page.</p>
+  <p>Log in to your superuser account to edit products (add new products, delete products, edit product information).</p>
     <form method="POST" action="{% url 'shopping:login' %}"> 
     {% csrf_token %}
     <p>
@@ -24,7 +25,7 @@
       {{form.password.label_tag }}
       {{form.password }}
     </p>
-      <input type="submit" name="Login"/>
+      <input type="submit" value="Log in">
       <input type="hidden" name='next' value="{{ next}}"/>
    </p>
 </form>

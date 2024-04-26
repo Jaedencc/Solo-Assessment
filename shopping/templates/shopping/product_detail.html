@@ -1,13 +1,16 @@
 {% extends 'shopping/base.html' %}
 {% block content %}
-    <h1>Computer Shopping: Product Details</h1>
-    
-    <p>Product {{ product.id }}: <a href="{% url 'shopping:product_edit' id=product.id %}">Edit</a>
-      This is product {{ product.name }} , which costs
-      {{product.price}}. Sold from <a href="{% url 'shopping:latLng' id=product.id %}">{{ country.country_name }}</a>. The product was added on: {{ product.created_date }} 
-   </p>
+    <h1>Computer Shopping Station: Product Details</h1>
+    <div class="product">
+        <p><b>{{ product.name }}
+        <br>Price: {{product.price}}.
+        <br>Sold from <a href="{% url 'shopping:latLng' id=product.id %}">{{ product.country_code }}</a>.
+        <br>The product was created on: {{ product.created_date }}. </b></p>
+        <p><b><a href="{% url 'shopping:product_edit' id=product.id %}">Edit</a></b></p>
+        </p>
+    </div>
 
-    <form action="{% url 'shopping:cart_add' product.id %}" method="post">
+    <form action="{% url 'shopping:add_product' product.id %}" method="post">
         {% csrf_token %}
         <label for="quantity">Quantity:</label>
         <input type="number" name="quantity" id="quantity" value="1" min="1" max="100">

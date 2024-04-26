@@ -1,6 +1,6 @@
 {% extends 'shopping/base.html' %}
 {% block content %}
-<h1>Computer Shopping: Registration</h1>
+<h1>Registration</h1>
   
   <form method="post" > 
     {% csrf_token %}
@@ -16,7 +16,7 @@
       {% endfor %}
     </p>
     {% endfor %}
-      <input type="submit" name="Sign Up"/>
+      <input type="submit" value="Register">
      
 </form>
 {% endblock %}

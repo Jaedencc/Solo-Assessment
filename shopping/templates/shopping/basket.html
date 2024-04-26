@@ -1,28 +1,44 @@
 {% extends 'shopping/base.html' %}
 {% block content %}
-
-<h2>Your Cart</h2>
-<table>
-  <tr>
-    <th>Product</th>
-    <th>Quantity</th>
-    <th>Total Price</th>
-    <th>Actions</th>
-  </tr>
-  {% for item in cart.cart_items.all %}
-  <tr>
-    <td>{{ item.product.name }}</td>
-    <td>{{ item.quantity }}</td>
-    <td>${{ item.total_price }}</td>
-    <td>
-      <a href="{% url 'shopping:cart_remove' item.product.id %}">remove</a>
-    </td>
-  </tr>
-  {% empty %}
-  <tr>
-    <td colspan="4">Your cart is empty.</td>
-  </tr>
-  {% endfor %}
-</table>
-
-{% endblock %}
+  <h1>Computer Shopping Station: Your Basket</h1>
+ <table>
+  {% for item in basket %}
+        {% with product=item.product %}
+          <tr>
+            <td>
+              <a href="{% url 'shopping:product_detail' id=product.id %}">
+              </a>
+            </td>
+            <td>{{ product.name }}</td>
+            <td>
+              <form action="{% url 'shopping:add_product' product.id %}" method="post">
+                {{ item.update_quantity_form.quantity }}
+                {{ item.update_quantity_form.override }}
+                <input type="submit" value="Update">
+                {% csrf_token %}
+              </form>
+            </td>
+            <td>
+              <form action="{% url 'shopping:remove_product' product.id %}" method="post">
+                <input type="submit" value="Remove">
+                {% csrf_token %}
+              </form>
+            </td>
+            <td class="num">${{ item.price }}</td>
+            <td class="num">${{ item.total_price }}</td>
+          </tr>
+        {% endwith %}
+      {% endfor %}
+      <tr class="total">
+        <td>Total</td>
+        <td colspan="4"></td>
+        <td class="num">${{ basket.get_total_price }}</td>
+      </tr>
+  </table>
+  <p class="text-right">
+    <a href="{% url 'shopping:product_list' %}" class="button
+    light">Continue shopping</a>
+  </p>
+ 
+   <a href="{% url 'shopping:purchase' %}">Purchase</a>
+ {% endblock %}

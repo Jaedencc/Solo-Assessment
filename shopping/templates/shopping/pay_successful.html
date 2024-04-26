@@ -1,0 +1,7 @@
+{% extends 'shopping/base.html' %}
+
+{% block content %}
+    <h1><b>Thank you for your purchase. Your order is now being processed.</b></h1>
+    <b><a href="{% url 'shopping:product_list' %}" role="button">Continue Shopping</a></b>
+    </p>
+{% endblock %}

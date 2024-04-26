@@ -22,6 +22,19 @@ class SignUpForm(UserCreationForm):
         'address', 'first_name', 'last_name', )
 
 
-class CartAddProductForm(forms.Form):
-    quantity = forms.IntegerField(min_value=1, max_value=100, initial=1)
-    override = forms.BooleanField(required=False, initial=False, widget=forms.HiddenInput)
+class ProductForm (forms.ModelForm):
+    name= forms.CharField(max_length=200)
+
+    class Meta:
+        model = Product
+        fields = ('name','price',)
+
+PRODUCT_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 100)]
+
+class BasketAddProductForm(forms.Form):
+    quantity = forms.TypedChoiceField(
+                                choices=PRODUCT_QUANTITY_CHOICES,
+                                coerce=int)
+    override = forms.BooleanField(required=False,
+                                  initial=False,
+                                  widget=forms.HiddenInput)

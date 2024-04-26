@@ -1,18 +1,38 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Coordinates</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
+   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
+   <style>
+     #mapid { height: 660px; }
+   </style>
 </head>
 <body>
-    <h1>Product: {{ product.name }}</h1>
-    <p>Price: {{ product.price }}</p>
-    <h2>Associated Countries and Coordinates:</h2>
-    <ul>
+  {% if countries %}
         {% for country in countries %}
-        <li>{{ country.country_name }}: Latitude {{ country.latitude }}, Longitude {{ country.longitude }}</li>
-        {% endfor %}
-    </ul>
+     <div id="mapid"></div>
+      <script type = "text/javascript">
+        var mymap = L.map('mapid').setView([{{ country.latitude }}, {{country.longitude}}], 6 );
+
+          accessToken: 'no-token',
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+       maxZoom: 18,
+   }).addTo(mymap); 
+   var taggingIcon = L.icon({ 
+     iconUrl: "{% static 'icons/placeholder-red.png' %} ", 
+     iconSize: [35, 35] });
+     var marker = L.marker([{{ country.latitude }}, {{country.longitude }}], {icon: taggingIcon }).addTo(mymap);
+   </script>
+   {% endfor %}
+    {% else %}
+        <p>No countries found.</p>
+    {% endif %}
 </body>
 </html>
+

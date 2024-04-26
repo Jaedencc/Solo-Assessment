@@ -84,4 +84,4 @@ class Command(BaseCommand):
         except Exception as error:
             print(f"Unexpected error: {error}")
         finally:
-            print("Parsing all csv files completed.")
+            print("Parsing Done.")

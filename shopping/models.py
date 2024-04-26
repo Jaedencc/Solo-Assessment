@@ -1,19 +1,16 @@
-from django.conf import settings
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-# Create your models here.
+# Product Model
 
 class Product(models.Model):
     name = models.CharField(max_length=200, db_index=True)
     brand = models.CharField(max_length=255)
     country_code = models.CharField(max_length=255)
     price = models.FloatField()
-    # use decimal instead of float to avoid rounding errors
-    # always use decimal for money values
     created_date = models.DateTimeField(auto_now_add=True)  
 
     def __str__(self):
@@ -22,10 +19,10 @@ class Product(models.Model):
         except AttributeError as error:
             return "Attributes are missing"
 
-################
+# Country Model
 
 class Country(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='countries')
+    product = models.ForeignKey('shopping.Product', on_delete=models.CASCADE, related_name='countries')
     countryCode = models.CharField(max_length=255)
     latitude = models.FloatField()
     longitude = models.FloatField()
@@ -36,6 +33,7 @@ class Country(models.Model):
             return f'{self.product},{self.countryCode},{self.latitude},{self.longitude},{self.country_name}'
         except AttributeError as error:
             return "Attributes are missing"
+
 
 # Customer model
 
@@ -60,30 +58,27 @@ class Customer(models.Model):
     def save_user_profile(sender, instance, **kwargs):
         instance.customer.save()
 
-
-# Cart model
+# Cart Model
 
 class Cart(models.Model):
-    customer = models.OneToOneField(Customer, on_delete=models.CASCADE, related_name='cart')
+    product = models.ForeignKey('shopping.Product', on_delete=models.CASCADE, related_name='carts')
+    quantity = models.IntegerField()
     created_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'Cart for {self.customer.user.email} created on {self.created_date.strftime("%Y-%m-%d %H:%M:%S")}'
-
-    def total_price(self):
-        return sum(item.total_price() for item in self.cart_items.all())
+        return f'{self.product},{self.quantity},{self.created_date}'
 
 class CartItem(models.Model):
-    cart = models.ForeignKey(Cart, related_name='cart_items', on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity = models.IntegerField(default=1)
+    quantity = models.IntegerField()
+    product = models.ForeignKey('shopping.Product', on_delete=models.CASCADE)
+    cart = models.ForeignKey('shopping.Cart', on_delete=models.CASCADE)
+    order = models.ForeignKey('shopping.Order', on_delete=models.CASCADE)
+    created_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.quantity} x {self.product.name} in cart of {self.cart.customer.user.email}'
+        return f'{self.quantity},{self.product},{self.cart},{self.order},{self.created_date}'
 
-    def total_price(self):
-        return self.quantity * self.product.price
-
+# Order Model
 
 class Order(models.Model):
     customer = models.ForeignKey('shopping.Customer', on_delete=models.CASCADE)
@@ -91,3 +86,4 @@ class Order(models.Model):
 
     def __str__(self):
         return f'{self.customer},{self.created_date}'
+

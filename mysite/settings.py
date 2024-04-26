@@ -29,6 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['austriacamilla-monsterparlor-8000.codio-box.uk','localhost']
 CSRF_TRUSTED_ORIGINS = ['https://austriacamilla-monsterparlor-8000.codio-box.uk']
 
+BASKET_SESSION_ID = 'basket_id'
 
 # Application definition
 
@@ -122,7 +123,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

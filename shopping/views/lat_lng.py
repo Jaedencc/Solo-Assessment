@@ -7,4 +7,5 @@ from shopping.models import Product, Country
 def latLng(request, id): 
     product = get_object_or_404(Product, id=id)
     countries = product.countries.all()
+    print(countries)
     return render(request, 'shopping/lat_lng.html', {'product': product, 'countries': countries})

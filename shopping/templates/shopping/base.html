@@ -1,32 +1,29 @@
 {% load static %}
 <html lang="en">
 <head>
-  <title>Computer Shopping </title>
-  <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title> Computer Shopping Station </title>
+    <link rel="stylesheet" href="{% static 'cssStyle.css' %}">
+
 </head>
 
 <body>
 
-  {% if user.is_staff %}
-  <p>
-  <a href = "{% url 'shopping:product_list' %}">Acme Shopping Home</a>
+<div class="normal_links"> 
+    <p> 
+    
+        <a href = "{% url 'shopping:product_list' %}">Home</a> |
+        
 
-
-
-
-  {% else %}
-<p> 
-
-    <a href = "{% url 'shopping:product_list' %}">Computer Shopping Home</a> |
-    {% endif %}
-    {% if user.is_authenticated %}
-    <a href = "{% url 'shopping:cart_detail' %}">Basket</a>
-    <a href = "{% url 'shopping:logout' %}">Log Out</a> </p>
-    {% else %}
-    <a href = "{% url 'shopping:login' %}">Log In</a> 
+        {% if user.is_authenticated %}
+        <a href = "{% url 'shopping:basket_detail' %}">Basket</a> |
+        
+        <a href = "{% url 'shopping:logout' %}">Log Out</a> </p>
+        {% else %}
+        <a href = "{% url 'shopping:login' %}">Log In</a> 
     </p>
-    {% endif %}
+        {% endif %}
 
+</div>
     {% block content %}
     {% endblock %}
 
