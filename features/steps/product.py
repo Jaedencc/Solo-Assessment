@@ -40,7 +40,7 @@ def step_impl(context):
     base_url = urllib.request.url2pathname(context.test_case.live_server_url)
     open_url = urljoin(base_url, '/')  
     context.browser.get(open_url)
-    assert 'This is product' in context.browser.page_source, "Expected product listing not found."
+    assert 'new computer' in context.browser.page_source, "Expected product listing not found."
 
 @then(u'we will find \'nice computer\'')
 def step_impl(context):

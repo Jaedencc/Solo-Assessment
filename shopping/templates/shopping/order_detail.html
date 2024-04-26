@@ -2,15 +2,14 @@
 {% block content %}
     <h1>Order Details</h1>
     
-    <p>Order: 
-      This is order {{ order.id }} for
-      {{user.first_name}} {{user.last_name}}. The order was placed on: {{ order.created_date }} 
+    <p>Order {{ order.id }} for
+      {{user.first_name}} {{user.last_name}}. The order was paid on: {{ order.created_date }} 
    </p>
-  <p>The order includes these items:</p>
+
   {% for cart_item in cart_items %}
-  <p>
-   Quantity: {{ cart_item.quantity}}  Item: {{ cart_item.product }}
-  </p>
+    <p>Quantity: {{ cart_item.quantity}} </p>
+    <p>Item: {{ cart_item.product }}</p>
+  
   
   {% endfor %}
    
