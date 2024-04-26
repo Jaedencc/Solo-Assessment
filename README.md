@@ -69,5 +69,11 @@ behave
 - Users can search for products by brand name.
 
 After Super User Login
-- On the Home page you will find new features: View Brand Chart | Add a new product | Orders
+- On the Home page you will find new features: View Brand Chart | Add a new product | Orders (There is sometimes some delay in the display of bar charts.)
 - New functions are also available on the product details page: Edit | Delete
+- You can access the order details page by clicking on the order number. (If you do not fill in the full name when registering, the person who placed the order will not be displayed.)
+
+- Adding /admin after the URL get access to the administration system.
+- After logging in through the super user, you can operate on the user's products as well as orders.
+
+Deployment URL: zzs990.pythonanywhere.com

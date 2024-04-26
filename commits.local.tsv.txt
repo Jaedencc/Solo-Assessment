@@ -1,3 +1,18 @@
+3fb741ee	ZHISEN ZHANG	Fri Apr 26 21:57:05 2024	Improve
+854fb469	ZHISEN ZHANG	Fri Apr 26 16:00:20 2024	Update .gitignore and apply changes
+9da8a041	ZHISEN ZHANG	Fri Apr 26 15:58:26 2024	Merge branch 'main' of github.com:Jaedencc/soloAssessment into main
+133b4d4b	ZHISEN ZHANG	Fri Apr 26 15:49:01 2024	solo
+785f985c	ZHISEN ZHANG	Fri Apr 26 15:49:01 2024	solo
+82899534	ZHISEN ZHANG	Fri Apr 26 15:15:55 2024	add
+13702956	ZHISEN ZHANG	Fri Apr 26 15:15:55 2024	add
+c503a055	ZHISEN ZHANG	Fri Apr 26 14:35:41 2024	add
+7283aa97	ZHISEN ZHANG	Fri Apr 26 14:35:41 2024	add
+dc3ecf9d	ZHISEN ZHANG	Fri Apr 26 14:24:37 2024	Merge branch 'main' of github.com:Jaedencc/Solo-Assessment into main
+0361ac58	ZHISEN ZHANG	Fri Apr 26 14:24:37 2024	Merge branch 'main' of github.com:Jaedencc/Solo-Assessment into main
+09be6983	ZHISEN ZHANG	Fri Apr 26 14:23:00 2024	add
+b1c0e045	Jaedencc	Fri Apr 26 13:51:15 2024	Delete .venv directory
+49365a22	Jaedencc	Fri Apr 26 13:51:15 2024	Delete .venv directory
+7c2e6347	ZHISEN ZHANG	Fri Apr 26 13:25:59 2024	make some change in model and templates
 35245a8b	ZHISEN ZHANG	Fri Apr 26 12:08:17 2024	add handling error and modify some templates and test
 31bde6ff	ZHISEN ZHANG	Fri Apr 26 03:57:07 2024	improve features about basket, order and purchase, add behave test and map and Brand bar chart
 186a1e18	ZHISEN ZHANG	Wed Apr 24 00:11:38 2024	add multiple features about basket signup and register
