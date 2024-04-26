@@ -1,20 +1,17 @@
 {% extends 'shopping/base.html' %}
 {% block content %}
-    <h1>Computer Shopping: Login</h1>
+    <h1>Login</h1>
     {% if form.errors %}
-       <p>Your username and password didn't match. Please try again.</p>
     {% endif %}
     {%if next %}
     {% if request.user.is_authenticated %}
-    <!-- proceed to requested page-->
-    {% else %}
-    <p>Your account doesn't have access to this page. To proceed,
-      please login with an account that has access.</p>
-     
+    {% else %}    
     {% endif %}
   {% endif %}
-  <p>Please login, or <a href = "{% url 'shopping:signup' %}">Register</a></p>
-  <p>Log in to your superuser account to edit products (add new products, delete products, edit product information).</p>
+  <p><b>Please login, or <a href = "{% url 'shopping:signup' %}">Register</a></b></p>
+  <p><b>Log in to your superuser account to edit products (add new products, delete products, edit product information) and check brand bar chart and orders.
+    <br> Deleting and editing product in product detail page
+  </b></p>
     <form method="POST" action="{% url 'shopping:login' %}"> 
     {% csrf_token %}
     <p>

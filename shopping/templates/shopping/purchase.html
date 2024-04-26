@@ -1,6 +1,6 @@
 {% extends 'shopping/base.html' %}
 {% block content %}
-    <h1>Computer Shopping Station: Your Order</h1>
+    <h1>Your Order</h1>
     
 <h2>Basket:</h2>
   {% for item in basket %}
@@ -13,9 +13,6 @@
    <p>
     <form action="/payment/" method="post">
        {% csrf_token %}
-       <p><b>Check Your Information</b></p>
-       First Name<input type='text' name='first_name' value="{{user.first_name}}" disabled>
-       Last Name<input type='text' name='last_name' value="{{user.last_name}}" disabled><br>
        <label for 'pay'>Card Information:</label><input type='text' size=5 name='payment'>
        <input type="number" name="total" value="Total Payment:">
        <input type="submit" value="Payment">

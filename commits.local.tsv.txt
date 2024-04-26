@@ -1,3 +1,5 @@
-186a1e1	ZHISEN ZHANG	Wed Apr 24 00:11:38 2024	add multiple features about basket signup and register
-5a375ad	ZHISEN ZHANG	Sun Apr 21 21:17:22 2024	add functions of edit, add new, delete and search, and updata details of product
-641b4d9	ZHISEN ZHANG	Sun Apr 21 16:10:26 2024	done basic model view and templates
+35245a8b	ZHISEN ZHANG	Fri Apr 26 12:08:17 2024	add handling error and modify some templates and test
+31bde6ff	ZHISEN ZHANG	Fri Apr 26 03:57:07 2024	improve features about basket, order and purchase, add behave test and map and Brand bar chart
+186a1e18	ZHISEN ZHANG	Wed Apr 24 00:11:38 2024	add multiple features about basket signup and register
+5a375ad8	ZHISEN ZHANG	Sun Apr 21 21:17:22 2024	add functions of edit, add new, delete and search, and updata details of product
+641b4d96	ZHISEN ZHANG	Sun Apr 21 16:10:26 2024	done basic model view and templates

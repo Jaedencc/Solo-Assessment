@@ -66,7 +66,10 @@ class Cart(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.product},{self.quantity},{self.created_date}'
+        try:
+            return f'{self.product},{self.quantity},{self.created_date}'
+        except AttributeError as error:
+            return "Attributes are missing"
 
 class CartItem(models.Model):
     quantity = models.IntegerField()
@@ -76,7 +79,10 @@ class CartItem(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.quantity},{self.product},{self.cart},{self.order},{self.created_date}'
+        try:
+            return f'{self.quantity},{self.product},{self.cart},{self.order},{self.created_date}'
+        except AttributeError as error:
+            return "Attributes are missing"
 
 # Order Model
 
@@ -85,5 +91,8 @@ class Order(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.customer},{self.created_date}'
+        try:
+            return f'{self.customer},{self.created_date}'
+        except AttributeError as error:
+            return "Attributes are missing"
 

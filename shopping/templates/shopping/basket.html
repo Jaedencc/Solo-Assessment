@@ -1,6 +1,6 @@
 {% extends 'shopping/base.html' %}
 {% block content %}
-  <h1>Computer Shopping Station: Your Basket</h1>
+  <h1>Basket</h1>
  <table>
   {% for item in basket %}
         {% with product=item.product %}
@@ -36,9 +36,9 @@
       </tr>
   </table>
   <p class="text-right">
-    <a href="{% url 'shopping:product_list' %}" class="button
-    light">Continue shopping</a>
+    <b><a href="{% url 'shopping:product_list' %}" class="button
+    light">Continue shopping</a></b>
   </p>
  
-   <a href="{% url 'shopping:purchase' %}">Purchase</a>
+   <b><a href="{% url 'shopping:purchase' %}">Purchase</a></b>
  {% endblock %}

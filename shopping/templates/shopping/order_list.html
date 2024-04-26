@@ -1,6 +1,6 @@
   {% extends 'shopping/base.html' %}
   {% block content %}
-    <h1>Computer Shopping Station: Order List</h1>
+    <h1>Order List</h1>
     
     {% for order in orders %}
     <p>Order Number: <b> <a href="{% url 'shopping:order_detail' id=order.id %}">{{order.id }}</a></b> | The order was paid on: {{ order.created_date }} 
